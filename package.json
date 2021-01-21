@@ -1,6 +1,8 @@
 {
   "name": "json-tree-server",
-  "version": "0.1.0",
+  "version": "0.1.1",
+  "bin": "./lib/index.js",
+  "license": "MIT",
   "scripts": {
     "start": "ts-node src"
   },
