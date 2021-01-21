@@ -2,7 +2,6 @@ import express from "express"
 
 export function createServer(json: Record<string, any>, enableJsonPostfix: boolean)
 {
-	console.log(enableJsonPostfix)
 	let app = express()
 
 	app.get('*', (req, res) =>
