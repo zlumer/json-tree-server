@@ -10,7 +10,7 @@ const args = arg({
 const PATH = args._[0]
 if (!PATH)
 {
-	console.error(`input directory should be provided!`)
+	console.error(`input directory should be provided!\nUsage:\n\tnpx json-tree-server ./static`)
 	process.exit(1)
 }
 
