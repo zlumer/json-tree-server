@@ -22,7 +22,7 @@ source
      +-- main.json
 ```
 
-```json
+```jsonc
 // api.json:
 {
 	"v": "0.1",
@@ -41,7 +41,7 @@ source
 
 Now you can make HTTP requests to server:
 
-```json
+```jsonc
 // GET /api.json
 {"v":"0.1","nested":{"object":true}}
 
