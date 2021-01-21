@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { collectWarnings as collectErrors, readTree } from "./readdir"
 import { createServer } from "./server"
 import arg from "arg"
