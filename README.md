@@ -4,7 +4,7 @@ Serves JSON over HTTP similar to Firebase Realtime Database HTTP.
 
 ## Usage
 
-![](https://img.shields.io/npm/v/json-tree-server)
+[![NPM](https://img.shields.io/npm/v/json-tree-server)](https://www.npmjs.com/package/json-tree-server)
 
 `npx json-tree-server ./source`
 
