@@ -1,19 +1,22 @@
 import express from "express"
 
-export function createServer(json: Record<string, any>)
+export function createServer(json: Record<string, any>, enableJsonPostfix: boolean)
 {
+	console.log(enableJsonPostfix)
 	let app = express()
 
 	app.get('*', (req, res) =>
 	{
-		if (!req.path.endsWith('.json'))
+		if (enableJsonPostfix)
 			return res.status(404).json({
-				error: "not found"
+				error: {
+					message: "please add .json postfix to your query"
+				}
 			})
 
-		let path = req.path
-			.replace(/\.json$/, '') // remove '.json'
+		let path = (enableJsonPostfix ? req.path.replace(/\.json$/, '') : req.path)
 			.substr(1) // remove leading slash
+			.replace(/\/$/, '') // remove trailing slash
 			.split('/')
 			.map(decodeURIComponent)
 		
