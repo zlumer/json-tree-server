@@ -1,8 +1,11 @@
 {
   "name": "json-tree-server",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "bin": "./lib/index.js",
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/zlumer/json-tree-server"
+  },
   "scripts": {
     "start": "ts-node src",
     "prepublish": "tsc"

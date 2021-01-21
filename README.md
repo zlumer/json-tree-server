@@ -4,6 +4,8 @@ Serves JSON over HTTP similar to Firebase Realtime Database HTTP.
 
 ## Usage
 
+![](https://img.shields.io/npm/v/json-tree-server)
+
 `npx json-tree-server ./source`
 
 Launches an HTTP server that serves nested JSON structures from the provided `./source` directory.
