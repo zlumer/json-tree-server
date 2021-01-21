@@ -7,11 +7,21 @@ export function readTree(path: string)
 	let p = pathResolve(path)
 	let tree = readdir(p)
 	let info = treeToObj(tree)
-	let load = loadFilesToObj(info.obj)
+	let load = loadFilesToObj(info.tree)
 	return {
 		...info,
 		...load,
 	}
+}
+
+export function collectWarnings(info: ReturnType<typeof readTree>)
+{
+	return [
+		...info.duplicates.map(x => `duplicate path: ${x}`),
+		...info.emptyDirs.map(x => `empty dir: ${x}`),
+		...info.fileErrors.map(x => `error reading ${x}`),
+		...info.nonJsons.map(x => `non-json file: ${x}`),
+	]
 }
 
 export function removePrefix(tree: readdir.DirectoryTree, prefix: string): readdir.DirectoryTree
@@ -26,9 +36,9 @@ export function removePrefix(tree: readdir.DirectoryTree, prefix: string): readd
 function loadFilesToObj(obj: Record<string, string | {}>)
 {
 	let fileErrors: string[] = []
-	let res = _loadFilesToObj(obj, fileErrors)
+	let json = _loadFilesToObj(obj, fileErrors)
 	return {
-		obj: res,
+		json,
 		fileErrors
 	}
 }
@@ -64,7 +74,7 @@ export function treeToObj(tree: readdir.DirectoryTree)
 	let nonJsons: string[] = []
 	let emptyDirs: string[] = []
 	let obj = _treeToObj(tree, duplicates, nonJsons, emptyDirs)
-	return { obj, duplicates, nonJsons, emptyDirs }
+	return { tree: obj, duplicates, nonJsons, emptyDirs }
 }
 
 function _treeToObj(tree: readdir.DirectoryTree, duplicates: string[] = [], nonJsons: string[] = [], emptyDirs: string[] = []): Record<string, string | {}>
